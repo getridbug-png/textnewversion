@@ -34,7 +34,7 @@ const FONT_SIZES = [16, 24, 32, 40, 48, 56, 64, 72, 96, 128];
 
 interface TextEditorPanelProps {
   selectedTextNode: TextConfig | undefined;
-  onTextConfigChange: (prop: keyof Omit<TextConfig, 'id' | 'draggable' | 'x' | 'y' | 'rotation' | 'scaleX' | 'scaleY'>, value: any) => void;
+  onTextConfigChange: (prop: keyof Omit<TextConfig, 'id' | 'draggable' | 'x' | 'y' | 'rotation' | 'scaleX' | 'scaleY'>, value:  string | number) => void;
   onExport: () => void;
   isProcessing: boolean;
   fontsLoaded: boolean; // New prop to control the font selector

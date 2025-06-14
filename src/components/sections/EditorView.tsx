@@ -32,8 +32,8 @@ export default function EditorView({
   onExport,
   isProcessing
 }: EditorViewProps) {
-  const [originalImage, setOriginalImage] = useState<CanvasImage | null>(initialOriginalImage);
-  const [cutoutImage, setCutoutImage] = useState<CanvasImage | null>(initialCutoutImage);
+  const [originalImage] = useState<CanvasImage | null>(initialOriginalImage);
+  const [cutoutImage] = useState<CanvasImage | null>(initialCutoutImage);
   const [textNodes, setTextNodes] = useState<TextConfig[]>(initialTextNodes);
   const [selectedTextId, setSelectedTextId] = useState<string | null>(
     initialTextNodes.length > 0 ? initialTextNodes[0].id : null
@@ -109,7 +109,7 @@ export default function EditorView({
 
   const handleTextConfigChange = (
     prop: keyof Omit<TextConfig, 'id'|'draggable'|'x'|'y'|'rotation'|'scaleX'|'scaleY'>,
-    value: any
+    value: string | number
   ) => {
     if (!selectedTextId) return;
     setTextNodes(nodes => nodes.map(n => n.id === selectedTextId ? { ...n, [prop]: value } : n));

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import dynamic from 'next/dynamic';
 import { removeBackground, Config as ImglyConfig } from "@imgly/background-removal";
@@ -77,7 +77,7 @@ export default function CtaSection() {
   };
 
   // Main image processing logic
-  const processUploadedImage = async (file: File) => {
+  const processUploadedImage = useCallback(async (file: File) => {
     if (!file) return;
     
     setIsLoading(true);
@@ -110,8 +110,8 @@ export default function CtaSection() {
       
       
       const defaultFontSize = Math.max(24, Math.min(48, Math.round((originalImgData.image.naturalHeight || MAX_CANVAS_WIDTH_FALLBACK / (originalImgData.image.naturalWidth / originalImgData.image.naturalHeight || 16/9)) / 12)));// Calculate initial text properties based on original image size (EditorView will calculate final canvas size)
-      const textCanvasWidth = originalImgData.width || MAX_CANVAS_WIDTH_FALLBACK;
-      const textCanvasHeight = originalImgData.height || (MAX_CANVAS_WIDTH_FALLBACK / (originalImgData.width / originalImgData.height || 16/9));
+      // const textCanvasWidth = originalImgData.width || MAX_CANVAS_WIDTH_FALLBACK;
+      // const textCanvasHeight = originalImgData.height || (MAX_CANVAS_WIDTH_FALLBACK / (originalImgData.width / originalImgData.height || 16/9));
       const defaultTextId = `text-${Date.now()}`;
       setInitialTextNodes([{
         id: defaultTextId,
@@ -138,7 +138,7 @@ export default function CtaSection() {
       setIsLoading(false);
       console.log("CtaSection: processUploadedImage - Finished.");
     }
-  };
+  }, []);
   
   // Effect to trigger processing when imageFile is set
   useEffect(() => {
