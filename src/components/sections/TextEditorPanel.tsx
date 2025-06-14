@@ -11,7 +11,6 @@ import {
     SelectValue 
 } from "@/components/ui/select";
 import { Download, Settings2, Loader2 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import type { TextConfig } from './CanvasArea'; // Assuming type is exported from CanvasArea
 
 // This array defines the fonts your editor will offer.

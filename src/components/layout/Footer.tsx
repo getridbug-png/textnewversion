@@ -1,5 +1,3 @@
-import Link from "next/link";
-// Import the specific icons you need from lucide-react
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
