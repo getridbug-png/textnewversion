@@ -120,7 +120,7 @@ export default function ClientOnlyCanvas({
               key={id}
               id={id}
               {...restOfConfig}
-              onDragEnd={(e) => {
+              onDragEnd={(e: { target: { x: () => any; y: () => any; }; }) => {
                 setTextNodes(prev => prev.map(n => n.id === id ? { ...n, x: e.target.x(), y: e.target.y() } : n));
               }}
               onTransformEnd={onTransformEnd}

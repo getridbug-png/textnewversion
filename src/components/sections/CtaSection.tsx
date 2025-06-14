@@ -250,7 +250,7 @@ export default function CtaSection() {
     // Execute the export
     try {
       await performExport();
-    } catch (e_export_async) {
+    } catch (e_export_async: any) {
       console.log("CtaSection: EXPORT - performExport promise was rejected.", e_export_async);
       // Status message should have been set inside performExport's catch
     } finally {
