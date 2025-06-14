@@ -8,8 +8,8 @@ import Footer from "../components/layout/Footer"; // Using relative path as per 
 
 
 export const metadata: Metadata = {
-  title: "Text Behind Image AI",
-  description: "Create stunning images with text perfectly placed behind any object.",
+  title: "Text Behind Image AI - 100% Free Download",
+  description: "Add text behind image with our free AI online tool. No sign up needed, unlimited downloads. Create professional-looking visuals in seconds with our easy-to-use background text editor.",
 };
 
 export default function RootLayout({
