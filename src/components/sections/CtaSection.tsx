@@ -157,7 +157,7 @@ export default function CtaSection() {
     exportFinishedCallback?: () => void
   ) => {
     console.log("CtaSection: EXPORT - handleExportImage called.");
-    if (!currentDisplayStage || !originalKonvaImage || !cutoutKonvaImage || !textNodesForExport || textNodesForExport.length === 0) {
+    if (!currentDisplayStage || !originalKonvaImage || !cutoutKonvaImage || !textNodesForExport || textNodesForExport.length === 0 || !imageFile) {
       console.error("CtaSection: EXPORT - Aborting. Missing necessary data.");
       setStatusMessage({type: 'error', message: "Cannot export. Data missing."});
       if (exportFinishedCallback) exportFinishedCallback();
@@ -170,12 +170,13 @@ export default function CtaSection() {
 
     let exportStage: Konva.Stage | null = null;
     let tempContainer: HTMLDivElement | null = null;
-
+     
+    const fileToExport = imageFile; 
     // Define the core export logic as a promise
     const performExport = () => new Promise<void>((resolve, reject) => {
       setTimeout(() => { // Keep the setTimeout to ensure canvas is flushed
         try {
-          if (!originalKonvaImage || !cutoutKonvaImage || !textNodesForExport || !currentDisplayStage) { // Re-check critical refs/data
+          if (!originalKonvaImage || !cutoutKonvaImage || !textNodesForExport || !currentDisplayStage || !fileToExport) { // Re-check critical refs/data
             console.error("CtaSection: EXPORT (Promise) - Critical data became null.");
             reject(new Error("Critical data missing during export generation."));
             return;
@@ -217,7 +218,7 @@ export default function CtaSection() {
           const mimeType = 'image/jpeg'; 
           const fileExtension = mimeType === 'image/jpeg' ? 'jpeg' : 'jpg';
           const dataURL = exportStage.toDataURL({ mimeType: 'image/jpeg', quality: 1.0 });
-          const originalFileNameWithoutExtension = imageFile.name.substring(0, imageFile.name.lastIndexOf('.')) || imageFile.name;
+          const originalFileNameWithoutExtension = fileToExport.name.substring(0, fileToExport.name.lastIndexOf('.')) || fileToExport.name;
           const newFileName = `${originalFileNameWithoutExtension}-textBehind.${fileExtension}`;
           
           if (dataURL && dataURL.length > 100) {
