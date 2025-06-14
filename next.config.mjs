@@ -1,12 +1,12 @@
-// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true, // It's good to keep this true for development
+  reactStrictMode: true,
+
   webpack: (config, { isServer }) => {
+    // This modification is to prevent Konva from trying to import the 'canvas' module on the server.
+    // The 'canvas' module is for Node.js and not needed or available for server-side rendering in Next.js.
     if (isServer) {
-      // This tells Webpack not to try to bundle the 'canvas' module for the server
-      // as Konva might conditionally try to require it in a Node environment.
-      config.externals = [...config.externals, 'canvas'];
+      config.externals.push('canvas');
     }
     return config;
   },
