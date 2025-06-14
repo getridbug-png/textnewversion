@@ -1,4 +1,5 @@
-// src/components/sections/CanvasArea.tsx
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 
 import { useEffect, useRef, useState } from 'react'; // Keep useState for isClientCanvas
