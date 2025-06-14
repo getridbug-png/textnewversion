@@ -22,7 +22,7 @@ interface TextConfig {
   fontSize: number;
   fontFamily: string;
   fill: string;
-  fontStyle: "normal" | "italic";
+  fontStyle: "normal" | "italic" | "bold" | "bold italic";
   fontWeight: "normal" | "bold";
   draggable: boolean;
   rotation: number;
