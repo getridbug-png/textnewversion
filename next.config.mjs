@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
 
   webpack: (config, { isServer }) => {
-    // This modification is to prevent Konva from trying to import the 'canvas' module on the server.
-    // The 'canvas' module is for Node.js and not needed or available for server-side rendering in Next.js.
+    // This modification prevents Konva from trying to import the 'canvas' module
+    // during the server-side build, which is what causes the prerender error.
     if (isServer) {
       config.externals.push('canvas');
     }
@@ -12,4 +12,5 @@ const nextConfig = {
   },
 };
 
+// Use ES Module export syntax for .mjs files
 export default nextConfig;
